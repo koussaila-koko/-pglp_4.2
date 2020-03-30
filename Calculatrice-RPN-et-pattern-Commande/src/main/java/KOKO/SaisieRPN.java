@@ -6,37 +6,58 @@ import java.util.Scanner;
 * @author Koussaila HAMMOUCHE.
 */
 public class SaisieRPN {
+	/** Scanner.
+	 * */
 	private Scanner sc;
+	/** moteurRPN.
+	 * @see SaisieRPN#SaisieRPN() .
+	 * @see SaisieRPN#invoqueMoteurRPN(x) .
+	 * @see SaisieRPN#init() .
+	    */
 	private MoteurRPN moteurRPN;
-	private final static int MAX_VALUE = 100;
-	private final static int MIN_VALUE = 100;
+	/** MAX_VALUE.
+	 * @see SaisieRPN#invoqueMoteurRPN(x) .
+	  */
+	private final static int MAX_VALUE = 1000;
+	/** MIN_VALUE.
+	 * @see SaisieRPN#invoqueMoteurRPN(x) .
+	  */
+	private final static int MIN_VALUE = 1000;
+	/** moteurRPN.
+	 * @see SaisieRPN#SaisieRPN() .
+	 * @see SaisieRPN#invoqueMoteurRPN(x) .
+	 * @see SaisieRPN#init() .
+	 * @see SaisieRPN#saisie () .
+	    */
 	private Invoker invoqueur;
-
-	// constructeur pour initialiser le moteur
+	/**constructeur SaisieRPN.
+	 * constructeur pour initialiser le moteur
+	 * Creating the receiver object
+	 * Creating invoker and associating with Command
+	    */
 	public SaisieRPN() {
-		// Creating the receiver object
 		moteurRPN = new MoteurRPN();
-		// Creating invoker and associating with Command
 		invoqueur = new Invoker();
 		init();
 		sc = new Scanner(System.in);
-
-		
-	}
-
-	
-	
-	
-	
-	
-//la methode qui consiste a invoquer le moteur rpn(si l'utlisateur tape qlq 
-	// operateur on applique operation y correspond)
-	private void invoqueMoteurRPN(String x) throws ArithmeticException, NumberFormatException {
-
-		switch (x) {
-
+		}
+	/**methode invoqueMoteurRPN.
+	 * @param x .
+	 *la methode qui consiste a
+	 *invoquer le moteur rpn
+	 *(si l'utlisateur tape qlqchose)
+	 *operateur on applique operation
+	 *qui correspond
+	 * @see SaisieRPN#saisie () .
+	 * perform action on invoker object
+	 *verifie le nombre saisie
+	 *@throws ArithmeticException .
+	 *@throws NumberFormatException .
+	 * s'il est bien dans l'iterval
+	 * */
+public void invoqueMoteurRPN(String x) throws ArithmeticException, NumberFormatException {
+	switch (x) {
 		case "+":
-			// perform action on invoker object
 			invoqueur.invoquer("plus");
 			invoqueur.invoquer("retourner");
 			break;
@@ -52,40 +73,32 @@ public class SaisieRPN {
 			invoqueur.invoquer("div");
 			invoqueur.invoquer("retourner");
 			break;
-
-		case "undo":
+			case "undo":
 			invoqueur.invoquer("undo");
 			invoqueur.invoquer("retourner");
 			break;
-
-		case "quit":
+			case "quit":
 			invoqueur.invoquer("quit");
-			break;  
+			break;
 		default:
-			// verification du nombre saisie s'il est bien dans l'iterbal[min
-			// value,maxvalue]
 			double operande = Double.parseDouble(x);
-			if(operande > MAX_VALUE || operande < -MIN_VALUE) {
+			if (operande > MAX_VALUE || operande < -MIN_VALUE) {
 				throw new ArithmeticException("denominateur egal 0");
 			}
 			if ((Math.abs(operande) > -MIN_VALUE) && (operande < MAX_VALUE)) {
-
-				// creating command and associating with receiver
-				this.invoqueur.invoquer(new Enregistrer(moteurRPN,operande));
-				//moteurRPN.enregistrerOperande(operande);
+				this.invoqueur.invoquer(new Enregistrer(moteurRPN, operande));
 				invoqueur.invoquer("retourner");
 			} else {
 				throw new ArithmeticException("opreandes non inclus dans l'intervalle");
 			}
 			break;
 		}
-
-	}
-
-//interface homme machine
-	public void saisie() {
-
-		System.out.println("  *******CALCULATRICE RPN*******");
+}
+/**methode saisie.
+ * interface homme machine
+ * */
+public void saisie() {
+	    System.out.println("  *******CALCULATRICE RPN*******");
 		System.out.println("Saisir nombre, opération ou exit pour quitter");
 		while (true) {
 			String str = sc.nextLine();
@@ -99,35 +112,25 @@ public class SaisieRPN {
 	}
 
 
-
-	private void init() {
-		// creating command and associating with receiver
+/**methode init.
+ * creating command and associating with receiver
+ * ajouter les commandes
+ * plus moins mult dive
+ * */
+	public void init() {
 		Appliquer plus = new Appliquer(moteurRPN, Operations.PLUS);
-		// ajouter la commande plus
 		this.invoqueur.addNewCommande("plus", plus);
-
-		// creating command and associating with receiver
 		Appliquer moins = new Appliquer(moteurRPN, Operations.MOINS);
-		// ajouter la commande plus
 		this.invoqueur.addNewCommande("moins", moins);
-
-		// creating command and associating with receiver
 		Appliquer div = new Appliquer(moteurRPN, Operations.DIV);
-		// ajouter la commande plus
 		this.invoqueur.addNewCommande("div", div);
-
-		// creating command and associating with receiver
 		Appliquer mult = new Appliquer(moteurRPN, Operations.MULT);
-		// ajouter la commande plus
 		this.invoqueur.addNewCommande("mult", mult);
-		
-		Undo undo =new Undo(moteurRPN);
+		Undo undo = new Undo(moteurRPN);
 		this.invoqueur.addNewCommande("undo", undo);
-		
-		Quit quit=new Quit(moteurRPN);
+		Quit quit = new Quit(moteurRPN);
 		this.invoqueur.addNewCommande("quit", quit);
-		
-		Retourner retourner=new Retourner(moteurRPN);
+		Retourner retourner = new Retourner(moteurRPN);
 		this.invoqueur.addNewCommande("retourner", retourner);
 	}
 
