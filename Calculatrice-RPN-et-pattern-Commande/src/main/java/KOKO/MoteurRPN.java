@@ -56,6 +56,17 @@ public class MoteurRPN extends Interpreteur {
 	 * la pile
 	 * */
 	public Stack<Double> listeOperandes() {
+				System.out.print("(");
+				for (int i = 0; i < operandes.size(); i++) {
+					if (i == operandes.size() - 1) {
+						System.out.print(operandes.get(i));
+						break;
+					}
+					System.out.print(operandes.get(i) + "|");
+				}
+				System.out.print(")");
+
+			
 		return operandes;
 		}
 	}
