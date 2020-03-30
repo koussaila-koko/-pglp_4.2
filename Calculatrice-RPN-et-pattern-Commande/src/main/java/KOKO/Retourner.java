@@ -5,25 +5,25 @@ package KOKO;
 * @author Koussaila HAMMOUCHE.
 */
 public class Retourner  implements Command {
-	/** MoteurRPNr.
+	 /**MoteurRPNr.
 	    * @see Retourner#Retourner( moteurRPN )
 	    * @see Retourner#execute()
 	    */
 	private MoteurRPN moteurRPN;
 	/**
 	 * constructeur Retourner.
-	 * @param moteurRPN  
+	 * @param moteurRPN
 	 * cest MoteurRPN
 	 * */
-	public Retourner(MoteurRPN moteurRPN){
-		this.moteurRPN=moteurRPN;
+	public Retourner(MoteurRPN moteurRPN) {
+		this.moteurRPN = moteurRPN;
 	}
 	/**
 	 * methode execute.
-	 *  transmettre la demande à la méthode listeOperandes de la class moteurRPN.
+	 * transmettre la demande à
+	 * la méthode listeOperandes de la class moteurRPN.
 	 * */
 	public void execute() {
-		
 		this.moteurRPN.listeOperandes();
 	}
 
