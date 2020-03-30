@@ -11,13 +11,16 @@ import org.junit.Before;
 
 import KOKO.MoteurRPN;
 import KOKO.Operations;
+import KOKO.SaisieRPN;
 
 public class ExceptionTest {
 	private MoteurRPN M;
+	private SaisieRPN Saisir;
 
 	@Before
 	public void initialize() {
 		M = new MoteurRPN();
+		Saisir= new SaisieRPN();
 
 	}
 
@@ -44,17 +47,17 @@ public class ExceptionTest {
 			}
 			
 			
-		//	@Test (expected = ArithmeticException.class)
-			//public void TestINTERVAL(){
+			@Test (expected = ArithmeticException.class)
+			public void TestINTERVAL(){
 				
-		//		double val1=35464677;
 				
-		//		M.enregistrerOperande(val1);
+				
+				Saisir.invoqueMoteurRPN("2345");
 			
-			//}
+		}
 			
 			
-			@Test(expected = ArithmeticException.class)
+			
 			public void testappliquerOperationException() {
 				M.appliquerOperation(Operations.MOINS);
 			}
