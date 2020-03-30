@@ -1,7 +1,10 @@
+/**
+ * package des classes,interfces et enum
+ */
 package KOKO;
 /**
 *class Appliquer.
-* @author Koussaila HAMMOUCHE.
+* @author Koussaila_HAMMOUCHE.
 */
 public class Appliquer implements Command {
 	/** MoteurRPN.
@@ -20,9 +23,9 @@ public class Appliquer implements Command {
 	 * @param moteurRPN c'est notre moteur.
 	 * @param operation  c'est l'operande a ajouter a la plie + * -  .
 	 * */
-public Appliquer(MoteurRPN moteurRPN,Operations operation){
-		this.moteurRPN=moteurRPN;
-		this.operation=operation;
+public Appliquer(MoteurRPN moteurRPN, Operations operation) {
+		this.moteurRPN = moteurRPN;
+		this.operation = operation;
 	}
 	/**
 	 * méthode execute.
