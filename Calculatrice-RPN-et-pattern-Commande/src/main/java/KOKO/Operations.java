@@ -8,19 +8,31 @@ public enum Operations {
 	/**
 	*plus+.
 	* */
-	
-	PLUS('+') { 
-		public double eval(double a,double b) {
-			
+	PLUS('+') {
+		/**
+		*eval.
+		*@param a .
+		*@param b .
+		*@return a + b .
+		*@see Operations#Operations(val1,val2)
+		* */
+		public double eval(double a, double b) {
 			return a + b;
 		}
 	},
-	
 	/**
-	*moins-.
-	* */
+	 *moins-.
+	 * */
 	MOINS('-') {
-		public double eval(double a,double b) {
+		/**
+		 *eval.
+		 *@see Operations#Operations(val1,val2)
+		 *@param a .
+		 *@param b .
+		 *moins-.
+		 *@return a - b .
+		 * */
+		public double eval(double a, double b) {
 			return a - b;
 		}
 	},
@@ -28,58 +40,78 @@ public enum Operations {
 	*Multiplication*.
 	* */
 	MULT('*') {
-		public double eval(double a,double b) {
+		/**
+		 *eval*.
+		 *@see Operations#Operations(val1,val2)
+		 *@param a .
+		 *@param b .
+		 *@return a * b .
+		 * */
+		public double eval(double a, double b) {
 			return a * b;
 		}
 	},
 	/**
 	*la division/.
-	*Exception pour la division sur zero 0.
 	* */
 	DIV('/') {
-		public double eval(double a,double b) throws ArithmeticException {
-			if (b == 0)
-				throw new ArithmeticException("denominateur egal 0");
-			else
+		/**
+		 *eval/.
+		 *@see Operations#Operations(val1,val2)
+		 *@param a .
+		 *@param b .
+		 *@return a / b .
+		 *@throws ArithmeticException
+		 *Exception pour la division sur zero 0.
+		 * */
+		public double eval(double a, double b)
+				throws ArithmeticException {
+			if (b == 0) {
+				throw new ArithmeticException
+				("denominateur egal 0");
+				} else {
 				return a / b;
-			
+				}
 		}
 	};
 	/**
-	 * l’attribut symbole représente le symbole de l’opération (+, -, …​)
+	 * l’attribut symbole représente le symbole de l’opération (+, -, …​).
 	 **/
 	private char symbole;
 	/**
 	 * constructeur Operations.
 	 * @param symbole
 	 * le symbole de l’opération
+	 * @throws IllegalArgumentException.
+	 * exception
 	 **/
-
-	Operations(char symbole){
-		
+	Operations(char symbole) {
 		String symboles = "+-*/";
-		if (symboles.indexOf(symbole)==-1)
+		if (symboles.indexOf(symbole) == -1) {
 			throw new IllegalArgumentException();
-		else
+			} else {
 			this.symbole = symbole;
-	}
+			}
+		}
 	/**
 	 * methode getSymbol.
 	 * @return symbole
 	 * elle retourne le symbole de l'operation.
 	 * */
-	public char getSymbol(){
+	public char getSymbol() {
 		return symbole;
 	}
-	/** 
+	/**
 	 * Methode eval.
-	 * méthode abstraite qui nous permet de 
-	 * retournele le résultat de l’évaluation de l’opération sur deux opérande
+	 * méthode abstraite qui nous permet de
+	 * retournele le résultat de l’évaluation,
+	 * de l’opération sur deux opérande
 	 * @param val1 1er operand
 	 * @param val2 2EME Operand
-	 *exception si OperationException(manque operandes), div sur zero, MAX_VALUE,
-	 *MIN_VALUE et ErreurSaisieException.
+	 * @throws ArithmeticException .
+	 * @return eval
+	 *exception
 	 * */
-
-	public abstract double eval(double val1, double val2) throws ArithmeticException;
+	public abstract double eval(double val1, double val2)
+			throws ArithmeticException;
 }
