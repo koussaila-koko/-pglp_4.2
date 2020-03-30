@@ -5,26 +5,25 @@ package KOKO;
 * @author Koussaila HAMMOUCHE.
 */
 public class Quit implements Command {
-	/** 
-	    *interpreteur. 
+	/**
+	    *interpreteur.
 	    * @see Undo#Quit(intrInterpreteur)
 	    * @see Undo#execute()
 	    * */
-	private Interpreteur Interp;
+	private Interpreteur interpreteur;
 	/**
 	 * constructeur de la classe Quit.
-	 * @param Interp 
+	 * @param inter
 	 * Interpreteur
 	 * */
-	public Quit(Interpreteur Interp){
-		this.Interp=Interp;
+	public Quit(Interpreteur inter) {
+		this.interpreteur = inter;
 	}
 	/**
 	 * methode execute.
 	 * la commande qui transmet la demande à la méthode quit de Interpreteur
 	 * */
 	public void execute() {
-		this.Interp.quit();
+		this.interpreteur.quit();
 	}
-
 }
