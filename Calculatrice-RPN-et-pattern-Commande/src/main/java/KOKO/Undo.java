@@ -9,21 +9,21 @@ public class Undo implements Command {
 	    * @see Undo#Undo(Interp)
 	    * @see Undo#execute()
 	    */
-	private Interpreteur Interp;
+	private Interpreteur interp;
 	/**
 	 * constructeur de la classe Undo.
-	 * @param Interp cest 
+	 * @param interpr cest
 	 * Interpreteur
 	 * */
-	public Undo(Interpreteur Interp){
-		this.Interp=Interp;
+	public Undo(Interpreteur interpr) {
+		this.interp = interpr;
 	}
 	/**
 	 * methode execute.
 	 * la commande qui transmet la demande à la méthode undo de la classe Interpreteur(Interp)
 	 * */
 	public void execute() {
-		this.Interp.undo();
+		this.interp.undo();
 	}
 
 }
