@@ -6,5 +6,8 @@ package KOKO;
 * Méthode execute.
 */
 public interface Command {
+	/**
+	 * methode execute .
+	 * */
 	void execute();
 }
